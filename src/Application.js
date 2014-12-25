@@ -13,30 +13,13 @@ jsstg = {
 jsstg.Application = tm.createClass({
     superClass: tm.app.CanvasApp,
 
-    score: 0,
-    highScore: 0,       //ハイスコア
-    highScoreStage: 0,  //ハイスコア時ステージ
-    difficulty: 0,      //難易度(0-3)
-
     mainScene: null,
 
     highScore: 0,
     score: 0,
-    extendNumber: 0,
-    extendScore: null,
-
-    bgm: null,
-    bgmIsPlay: false,
-    volumeBGM: 1.0,
-    volumeSE: 1.0,
 
     init: function(id) {
         this.superInit(id);
-
-        this.extendScore = [];
-        this.extendScore.push(1000000);
-        this.extendScore.push(2000000);
-        this.extendScore.push(2500000);
 
         jsstg.core = this;
         this.resize(SC_W, SC_H).fitWindow();
