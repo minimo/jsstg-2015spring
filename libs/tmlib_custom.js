@@ -16939,7 +16939,7 @@ tm.ui = tm.ui || {};
             bar.animationTime = 100;
             
             // ひよこさん
-            this._createHiyoko(param).addChildTo(this.stage.piyoLayer);
+//            this._createHiyoko(param).addChildTo(this.stage.piyoLayer);
 
             // load
             var stage = this.stage;
@@ -16974,10 +16974,12 @@ tm.ui = tm.ui || {};
 
         onpointingstart: function(app) {
             // ひよこさん生成
+  /*
             var p = app.pointing;
             var piyo = this._createHiyoko(this.param).addChildTo(this.stage.piyoLayer);
             piyo.x = p.x;
             piyo.y = p.y;
+  */
         },
 
         _createHiyoko: function(param) {
@@ -18640,6 +18642,7 @@ tm.sound = tm.sound || {};
         _load: function(src) {
             if (!this.context) {
                 console.warn("本環境はWebAudio未対応です。(" + src + ")");
+                Alert("本環境はWebAudio未対応です。(" + src + ")");
                 return;
             }
 
