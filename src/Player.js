@@ -8,7 +8,7 @@
 
 tm.define("jsstg.Player", {
     superClass: "tm.app.Object2D",
-    layer: LAYER_OBJECT,
+    layer: LAYER_PLAYER,
 
     width: 2,
     height: 2,
@@ -40,7 +40,8 @@ tm.define("jsstg.Player", {
         this.superInit();
 
         this.sprite = tm.display.Sprite("player")
-            .addChildTo(this);
+            .addChildTo(this)
+            .setScale(2.0);
 
         //当り判定設定
         this.boundingType = "circle";
@@ -51,6 +52,14 @@ tm.define("jsstg.Player", {
         return this;
     },
     update: function() {
+    },
+    //指定座標を向く
+    look: function(x, y) {
+        var ax = this.x - x;
+        var ay = this.y - y;
+        var rad = Math.atan2(ay, ax);
+        var deg = ~~(rad * toDeg);
+        this.rotation = deg - 90;
     },
     //死亡演出
     damage: function() {

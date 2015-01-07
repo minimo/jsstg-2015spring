@@ -30,14 +30,17 @@ tm.define("jsstg.MainScene", {
     enemyCount: 0,
     enemyKill: 0,
 
+    //スコア
+    score: 0,
+
     background: "rgba(0, 100, 0, 1.0)",
+    labelParam: {fontFamily: "scoreboard", align: "left", baseline: "top",outlineWidth: 3},
 
     init: function() {
         this.superInit();
 
         //マルチタッチ初期化
         this.touches = tm.input.TouchesEx(this);
-
 /*
         this.mask = tm.display.Shape({width:SC_W, height:SC_H}).addChildTo(this).setPosition(SC_W*0.5, SC_H*0.5);
         this.mask.renderRectangle({fillStyle: "rgba(0,0,0,1.0)", strokeStyle: "rgba(0,0,0,1.0)"});
@@ -49,22 +52,24 @@ tm.define("jsstg.MainScene", {
         }
 
         //プレイヤー
-        this.player = jsstg.Player().addChildTo(this).setPosition(SC_W*0.5, SC_H*0.5);
+        this.player = jsstg.Player()
+            .addChildTo(this)
+            .setPosition(SC_W*0.5, SC_H*0.5);
         app.player = this.player;
 
         //システム表示ベース
-        this.systemBase = tm.app.Object2D().addChildTo(this).setPosition(0, 0);
+        this.systemBase = tm.app.Object2D()
+            .addChildTo(this)
+            .setPosition(0, 0);
 
         //スコア表示ラベル
-        app.score = 0;
-        var sc = this.scoreLabel = tm.display.OutlineLabel("SCORE:0", 30).addChildTo(this.systemBase);
-        sc.fontFamily = "'Orbitron'"; sc.align = "left"; sc.baseline  = "top"; sc.fontWeight = 700; sc.outlineWidth = 2;
+        var that = this;
+        var sc = this.scoreLabel = tm.display.OutlineLabel("SCORE: 0", 30)
+            .addChildTo(this.systemBase)
+            .setParam(this.labelParam);
         sc.update = function() {
-            this.text = "SCORE:"+app.score;
+            this.text = "SCORE: "+that.score;
         };
-
-        //ステージ初期化
-        this.initStage();
     },
 
     update: function() {
@@ -82,46 +87,23 @@ tm.define("jsstg.MainScene", {
     eraseBullet: function(target) {
     },
 
-    //ステージ初期化
-    initStage: function() {
-    },
-
     //タッチorクリック開始処理
     ontouchesstart: function(e) {
         if (this.touchID > 0)return;
         this.touchID = e.ID;
-
-        var sx = this.startX = e.pointing.x;
-        var sy = this.startY = e.pointing.y;
-        this.moveX = 0;
-        this.moveY = 0;
-
-        this.beforeX = sx;
-        this.beforeY = sy;
     },
 
     //タッチorクリック移動処理
     ontouchesmove: function(e) {
         if (this.touchID != e.ID) return;
 
-        var sx = e.pointing.x;
-        var sy = e.pointing.y;
-        var moveX = Math.abs(sx - this.beforeX);
-        var moveY = Math.abs(sx - this.beforeY);
-
-        if (this.time % 10 == 0) {
-            this.beforeX = sx;
-            this.beforeY = sy;
-        }
+        this.player.look(e.pointing.x, e.pointing.y);
     },
 
     //タッチorクリック終了処理
     ontouchesend: function(e) {
         if (this.touchID != e.ID) return;
         this.touchID = -1;
-
-        var sx = e.pointing.x;
-        var sy = e.pointing.y;
     },
 
     //addChildオーバーライド
