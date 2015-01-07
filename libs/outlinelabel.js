@@ -276,4 +276,19 @@ tm.display = tm.display || {};
         }
     });
 
+
+    //tm.display.Label拡張
+    //パラメータ一括セット
+    tm.display.Label.prototype.setParam =  function(param) {
+            this.fontFamily       = param.fontFamily       || this.fontFamily;
+            this.align            = param.align            || this.align;
+            this.baseline         = param.baseline         || this.baseline;
+            this.fontSize         = param.fontSize         || this.fontSize
+            this.fontWeight       = param.fontWeight       || this.fontWeight;
+            this.fillStyle        = param.fillStyle        || this.fillStyle;
+            this.fillStyleOutline = param.fillStyleOutline || this.fillStyleOutline;
+            this.outlineWidth     = param.outlineWidth     || this.outlineWidth;
+            return this;
+    }
+
 })();
