@@ -6,22 +6,11 @@
  *
  */
 
-tm.define("shotgun.LoadingScene", {
+tm.define("jsstg.LoadingScene", {
     superClass: "tm.app.Scene",
 
     init: function(param) {
         this.superInit();
-
-        var param = {
-            assets: assets,
-            width: SC_W,
-            height: SC_H,
-            bgColor: 'rgba(0, 0, 0, 1)',
-            nextScene: function() {
-                this._onLoadAssets();
-                return shotgun.TitleScene();
-            }.bind(this),
-        };
 
         this.fromJSON({
             children: {
@@ -56,8 +45,8 @@ tm.define("shotgun.LoadingScene", {
                     init: [{
                         width: SC_W*0.4,
                         height: 20,
-                        color: "red",
-                        bgColor: "hsl(200, 100%, 80%)",
+                        color: "hsl(200, 100%, 80%)",
+                        bgColor: "red",
                         borderColor: "transparent",
                         borderWidth: 0,
                     }],
@@ -158,7 +147,5 @@ tm.define("shotgun.LoadingScene", {
                 loader.load(param.assets);
             }
         }.bind(this));
-    },
-    _onLoadAssets: function() {
     },
 });

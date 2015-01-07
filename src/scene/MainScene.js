@@ -30,16 +30,18 @@ tm.define("jsstg.MainScene", {
     enemyCount: 0,
     enemyKill: 0,
 
+    background: "rgba(0, 100, 0, 1.0)",
+
     init: function() {
         this.superInit();
-        this.background = "rgba(0, 0, 0, 1.0)";
 
         //マルチタッチ初期化
         this.touches = tm.input.TouchesEx(this);
 
-        this.mask = tm.display.Shape(SC_W, SC_H).addChildTo(this).setPosition(SC_W*0.5, SC_H*0.5);
+/*
+        this.mask = tm.display.Shape({width:SC_W, height:SC_H}).addChildTo(this).setPosition(SC_W*0.5, SC_H*0.5);
         this.mask.renderRectangle({fillStyle: "rgba(0,0,0,1.0)", strokeStyle: "rgba(0,0,0,1.0)"});
-
+*/
         //レイヤー作成
         this.layers = [];
         for (var i = 0; i < LAYER_SYSTEM+1; i++) {
@@ -47,8 +49,7 @@ tm.define("jsstg.MainScene", {
         }
 
         //プレイヤー
-        this.player = jsstg.Player().addChildTo(this);
-        this.player.stageStartup();
+        this.player = jsstg.Player().addChildTo(this).setPosition(SC_W*0.5, SC_H*0.5);
         app.player = this.player;
 
         //システム表示ベース

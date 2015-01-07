@@ -46,7 +46,7 @@ app = {};
 
 //アプリケーションメイン
 tm.main(function() {
-    app = jsstg.TouchShooter("#world");
+    app = jsstg.Application("#world");
 //    app.enableStats();
     app.run();
 });

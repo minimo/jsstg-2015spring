@@ -28,7 +28,7 @@ jsstg.Application = tm.createClass({
 
         this.keyboard = tm.input.Keyboard(window);
 
-        var loadingScene = tm.ui.LoadingScene({
+        var loadingScene = jsstg.LoadingScene({
             assets: jsstg.assets,
             width: SC_W,
             height: SC_H,
@@ -40,7 +40,7 @@ jsstg.Application = tm.createClass({
         });
 
         //弾セットアップ
-        jsstg.setupBullets();
+//        jsstg.setupBullets();
 
         this.replaceScene(loadingScene);
     },
