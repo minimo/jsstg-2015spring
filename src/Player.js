@@ -52,18 +52,24 @@ tm.define("jsstg.Player", {
         return this;
     },
     update: function() {
-        if (this.time % 5 == 0) {
+        if (this.time % 10 == 0) {
             this.enterShot();
         }
         this.time++;
     },
-    //指定座標を向く
-    look: function(x, y) {
+    //指定座標の方角を取得
+    lookDirection: function(x, y) {
         var ax = this.x - x;
         var ay = this.y - y;
         var rad = Math.atan2(ay, ax);
         var deg = ~~(rad * toDeg);
-        this.rotation = deg - 90;
+        return deg - 90;
+    },
+    //指定座標を向く
+    look: function(x, y) {
+        var r = this.lookDirection(x, y);
+        r -= this.rotation;
+        this.rotation += r/10;
     },
     //死亡演出
     damage: function() {
