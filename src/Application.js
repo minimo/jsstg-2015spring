@@ -1,6 +1,6 @@
 /*
  *  jsstg-2015spring
- *  2014/12/11
+ *  2015/01/06
  *  @auther minimo  
  *  This Program is MIT license.
  */
@@ -29,13 +29,13 @@ jsstg.Application = tm.createClass({
         this.keyboard = tm.input.Keyboard(window);
 
         var loadingScene = tm.ui.LoadingScene({
-            assets: tds.assets,
+            assets: jsstg.assets,
             width: SC_W,
             height: SC_H,
             bgColor: "black",
             nextScene: function() {
                 this._onLoadAssets();
-                return tds.WaitScene();
+                return jsstg.MainScene();
             }.bind(this),
         });
 

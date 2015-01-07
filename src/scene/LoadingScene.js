@@ -1,6 +1,6 @@
 /*
  *  LoadingScene.js
- *  2014/12/09
+ *  2015/01/06
  *  @auther minimo  
  *  This Program is MIT license.
  *

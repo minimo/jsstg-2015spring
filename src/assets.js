@@ -1,13 +1,13 @@
 /*
  *  assets.js
- *  2014/07/10
+ *  2015/01/06
  *  @auther minimo  
  *  This Program is MIT license.
  */
 (function() {
 
 //アセット一覧
-tds.assets = {
+jsstg.assets = {
     //images
 
     //SE
