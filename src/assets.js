@@ -8,12 +8,16 @@
 
 //アセット一覧
 jsstg.assets = {
-    //images
+    //image
+    "player":   "assets/player.png",
 
-    //SE
+    //Soud Effect
     "explodeSmall": "assets/sen_ge_taihou03.mp3", 
     "explodeLarge": "assets/sen_ge_hasai01.mp3", 
     "explodePlayer": "assets/ta_ta_zuban_d01.mp3", 
+
+    //Font
+    "scoreboard": "font/scoreboard.ttf",
 }
 
 })();
