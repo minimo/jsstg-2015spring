@@ -52,6 +52,10 @@ tm.define("jsstg.Player", {
         return this;
     },
     update: function() {
+        if (this.time % 5 == 0) {
+            this.enterShot();
+        }
+        this.time++;
     },
     //指定座標を向く
     look: function(x, y) {
@@ -66,6 +70,7 @@ tm.define("jsstg.Player", {
     },
     //ショット
     enterShot: function() {
+        jsstg.ShotBullet(this.rotation, 5).addChildTo(this.parentScene).setPosition(this.x, this.y);
     },
     //プレイヤー投入時演出
     startup: function() {

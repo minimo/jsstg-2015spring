@@ -1,6 +1,6 @@
 /*
  *  BulletPattern.js
- *  2014/08/02
+ *  2015/01/06
  *  @auther minimo  
  *  This Program is MIT license.
  */

@@ -1,12 +1,12 @@
 /*
  *  Bullet.js
- *  2014/07/16
+ *  2015/01/06
  *  @auther minimo  
  *  This Program is MIT license.
  */
 (function() {
 
-tm.define("tds.Bullet", {
+tm.define("jsstg.Bullet", {
     superClass: "tm.bulletml.Bullet",
     layer: LAYER_BULLET,
     parentScene: null,
@@ -34,40 +34,40 @@ tm.define("tds.Bullet", {
 //        this.removeChildren();
         switch (param.type) {
             case "RS":
-                tm.display.Shape(20, 20).addChildTo(this).canvas = tds.bulletGraphic["NormalR-1"];
-                tm.display.Shape(10, 10).addChildTo(this).setPosition(-2,-2).canvas = tds.bulletGraphic["NormalR-2"];
-                tm.display.Shape(10, 10).addChildTo(this).setPosition( 2, 2).canvas = tds.bulletGraphic["NormalR-2"];
+                tm.display.Shape(20, 20).addChildTo(this).canvas = jsstg.bulletGraphic["NormalR-1"];
+                tm.display.Shape(10, 10).addChildTo(this).setPosition(-2,-2).canvas = jsstg.bulletGraphic["NormalR-2"];
+                tm.display.Shape(10, 10).addChildTo(this).setPosition( 2, 2).canvas = jsstg.bulletGraphic["NormalR-2"];
                 break;
             case "BS":
-                tm.display.Shape(20, 20).addChildTo(this).canvas = tds.bulletGraphic["NormalB-1"];
-                tm.display.Shape(10, 10).addChildTo(this).setPosition(-2,-2).canvas = tds.bulletGraphic["NormalB-2"];
-                tm.display.Shape(10, 10).addChildTo(this).setPosition( 2, 2).canvas = tds.bulletGraphic["NormalB-2"];
+                tm.display.Shape(20, 20).addChildTo(this).canvas = jsstg.bulletGraphic["NormalB-1"];
+                tm.display.Shape(10, 10).addChildTo(this).setPosition(-2,-2).canvas = jsstg.bulletGraphic["NormalB-2"];
+                tm.display.Shape(10, 10).addChildTo(this).setPosition( 2, 2).canvas = jsstg.bulletGraphic["NormalB-2"];
                 break;
             case "RL":
-                tm.display.Shape(32, 32).addChildTo(this).canvas = tds.bulletGraphic["NormalR-1"];
-                tm.display.Shape(16, 16).addChildTo(this).setPosition(-3,-3).canvas = tds.bulletGraphic["NormalR-2"];
-                tm.display.Shape(16, 16).addChildTo(this).setPosition( 3, 3).canvas = tds.bulletGraphic["NormalR-2"];
+                tm.display.Shape(32, 32).addChildTo(this).canvas = jsstg.bulletGraphic["NormalR-1"];
+                tm.display.Shape(16, 16).addChildTo(this).setPosition(-3,-3).canvas = jsstg.bulletGraphic["NormalR-2"];
+                tm.display.Shape(16, 16).addChildTo(this).setPosition( 3, 3).canvas = jsstg.bulletGraphic["NormalR-2"];
                 break;
             case "BL":
-                tm.display.Shape(32, 32).addChildTo(this).canvas = tds.bulletGraphic["NormalB-1"];
-                tm.display.Shape(16, 16).addChildTo(this).setPosition(-3,-3).canvas = tds.bulletGraphic["NormalB-2"];
-                tm.display.Shape(16, 16).addChildTo(this).setPosition( 3, 3).canvas = tds.bulletGraphic["NormalB-2"];
+                tm.display.Shape(32, 32).addChildTo(this).canvas = jsstg.bulletGraphic["NormalB-1"];
+                tm.display.Shape(16, 16).addChildTo(this).setPosition(-3,-3).canvas = jsstg.bulletGraphic["NormalB-2"];
+                tm.display.Shape(16, 16).addChildTo(this).setPosition( 3, 3).canvas = jsstg.bulletGraphic["NormalB-2"];
                 break;
             case "RE":
-                tm.display.Shape(32, 32).addChildTo(this).canvas = tds.bulletGraphic["NormalR-1"];
-                tm.display.Shape(16, 16).addChildTo(this).setPosition(-3,-3).canvas = tds.bulletGraphic["NormalR-2"];
-                tm.display.Shape(16, 16).addChildTo(this).setPosition( 3, 3).canvas = tds.bulletGraphic["NormalR-2"];
+                tm.display.Shape(32, 32).addChildTo(this).canvas = jsstg.bulletGraphic["NormalR-1"];
+                tm.display.Shape(16, 16).addChildTo(this).setPosition(-3,-3).canvas = jsstg.bulletGraphic["NormalR-2"];
+                tm.display.Shape(16, 16).addChildTo(this).setPosition( 3, 3).canvas = jsstg.bulletGraphic["NormalR-2"];
                 this.scaleY = 0.8;
                 break;
             case "BE":
-                tm.display.Shape(32, 32).addChildTo(this).canvas = tds.bulletGraphic["NormalB-1"];
-                tm.display.Shape(16, 16).addChildTo(this).setPosition(-3,-3).canvas = tds.bulletGraphic["NormalB-2"];
-                tm.display.Shape(16, 16).addChildTo(this).setPosition( 3, 3).canvas = tds.bulletGraphic["NormalB-2"];
+                tm.display.Shape(32, 32).addChildTo(this).canvas = jsstg.bulletGraphic["NormalB-1"];
+                tm.display.Shape(16, 16).addChildTo(this).setPosition(-3,-3).canvas = jsstg.bulletGraphic["NormalB-2"];
+                tm.display.Shape(16, 16).addChildTo(this).setPosition( 3, 3).canvas = jsstg.bulletGraphic["NormalB-2"];
                 this.scaleY = 0.8;
                 break;
             default:
                 this.body = tm.display.Shape(32, 32).addChildTo(this);
-                this.body.canvas = tds.bulletGraphic["NormalR-1"];
+                this.body.canvas = jsstg.bulletGraphic["NormalR-1"];
                 break;
         }
 
@@ -76,19 +76,10 @@ tm.define("tds.Bullet", {
 
             //自機との当り判定チェック
             if (this.player.isCollision) {
-                if (this.player.shieldON) {
-                    //シールド着弾
-                    this.player.radius = 48;
-                    if (this.isHitElement(this.player) ) {
-                        this.isVanish = true;
-                    }
-                } else {
-                    //自機着弾
-                    this.player.radius = 2;
-                    if (this.isHitElement(this.player) ) {
-                        this.player.damage();
-                        this.isVanish = true;
-                    }
+                this.player.radius = 2;
+                if (this.isHitElement(this.player) ) {
+                    this.player.damage();
+                    this.isVanish = true;
                 }
             }
 
@@ -99,11 +90,11 @@ tm.define("tds.Bullet", {
             }
 
             if (this.isVanish) this.remove();
-        }.bind(this) );
+        }.bind(this));
 
         //リムーブ時
         this.on("removed", function(){
-            if (this.isVanishEffect) tds.Effect.BulletVanish(this).addChildTo(app.currentScene);
+            if (this.isVanishEffect) jsstg.Effect.BulletVanish(this).addChildTo(app.currentScene);
         }.bind(this));
 
         this.beforeX = this.x;
@@ -111,7 +102,7 @@ tm.define("tds.Bullet", {
     },
 });
 
-tm.define("tds.ShotBullet", {
+tm.define("jsstg.ShotBullet", {
     superClass: "tm.display.Shape",
     layer: LAYER_SHOT,
     parentScene: null,
@@ -123,8 +114,8 @@ tm.define("tds.ShotBullet", {
     defaultPower: 1,
 
     init: function(rotation, power) {
-        this.superInit(32, 32);
-        this.canvas = tds.bulletGraphic["shot"];
+        this.superInit({width: 32, height: 32});
+        this.canvas = jsstg.bulletGraphic["shot"];
 
         this.rotation = rotation || 0;
         this.speed = this.defaultSpeed;
@@ -158,6 +149,7 @@ tm.define("tds.ShotBullet", {
             this.remove();
         }
 
+/*
         //敵との当り判定チェック
         var s = [LAYER_OBJECT_UPPER, LAYER_OBJECT, LAYER_OBJECT_LOWER];
         for (var i = 0; i < 3; i++) {
@@ -172,11 +164,12 @@ tm.define("tds.ShotBullet", {
                 }
             }.bind(this));
         }
+*/
     },
 
     vanish: function() {
         for (var i = 0; i < 5; i++) {
-            var p = tds.Effect.Particle(32, 1, 0.95).addChildTo(this.parentScene).setPosition(this.x, this.y);
+            var p = jsstg.Effect.Particle(32, 1, 0.95).addChildTo(this.parentScene).setPosition(this.x, this.y);
             var x = rand(0, 30)-15;
             var y = rand(0, 50)*-1;
             p.tweener.moveBy(x, y, 1000, "easeOutCubic");
@@ -186,8 +179,8 @@ tm.define("tds.ShotBullet", {
 
 
 //弾の画像準備
-tds.setupBullets = function() {
-    tds.bulletGraphic = [];
+jsstg.setupBullets = function() {
+    jsstg.bulletGraphic = [];
 
     var c = 320;
     var color1 = tm.graphics.RadialGradient(16, 16, 0, 16, 16, 16)
@@ -204,9 +197,9 @@ tds.setupBullets = function() {
             {offset:1.0, color: "hsla({0}, 50%, 50%, 0.0)".format(c)},
         ]).toStyle();
 
-    tds.bulletGraphic["NormalR-1"] = tm.graphics.Canvas()
+    jsstg.bulletGraphic["NormalR-1"] = tm.graphics.Canvas()
         .resize(32, 32).setFillStyle(color1).fillRect(0, 0, 32, 32);
-    tds.bulletGraphic["NormalR-2"] = tm.graphics.Canvas()
+    jsstg.bulletGraphic["NormalR-2"] = tm.graphics.Canvas()
         .resize(16, 16).setFillStyle(color2).fillRect(0, 0, 16, 16);
 
     var c = 240;
@@ -224,25 +217,30 @@ tds.setupBullets = function() {
             {offset:1.0, color: "hsla({0}, 50%, 50%, 0.0)".format(c)},
         ]).toStyle();
 
-    tds.bulletGraphic["NormalB-1"] = tm.graphics.Canvas()
-        .resize(32, 32).setFillStyle(color1).fillRect(0, 0, 32, 32);
-    tds.bulletGraphic["NormalB-2"] = tm.graphics.Canvas()
-        .resize(16, 16).setFillStyle(color2).fillRect(0, 0, 16, 16);
+    jsstg.bulletGraphic["NormalB-1"] = tm.graphics.Canvas()
+        .resize(32, 32)
+        .setFillStyle(color1)
+        .fillRect(0, 0, 32, 32);
+    jsstg.bulletGraphic["NormalB-2"] = tm.graphics.Canvas()
+        .resize(16, 16)
+        .setFillStyle(color2)
+        .fillRect(0, 0, 16, 16);
 
     //ショット
     var shotPath = [
         [16,0], [32,24], [16,32], [0,24],
     ];
-    tds.bulletGraphic["shot"] = tm.graphics.Canvas()
+    jsstg.bulletGraphic["shot"] = tm.graphics.Canvas()
         .resize(32, 32)
         .setColorStyle("hsla(250, 50%, 50%, 1.0)", "hsla(250, 50%, 50%, 1.0)")
         .setLineStyle(2)
         .beginPath()
         .moveTo(shotPath[0][0], shotPath[0][1]);
     for (var i = 1; i < shotPath.length; i++) {
-        tds.bulletGraphic["shot"].lineTo(shotPath[i][0], shotPath[i][1]);
+        jsstg.bulletGraphic["shot"]
+            .lineTo(shotPath[i][0], shotPath[i][1]);
     }
-    tds.bulletGraphic["shot"]
+    jsstg.bulletGraphic["shot"]
         .lineTo(shotPath[0][0], shotPath[0][1])
         .stroke()
         .fill()

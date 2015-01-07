@@ -40,7 +40,7 @@ jsstg.Application = tm.createClass({
         });
 
         //弾セットアップ
-//        jsstg.setupBullets();
+        jsstg.setupBullets();
 
         this.replaceScene(loadingScene);
     },
