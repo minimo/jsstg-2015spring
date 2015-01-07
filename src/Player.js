@@ -39,7 +39,8 @@ tm.define("jsstg.Player", {
     init: function() {
         this.superInit();
 
-        this.setupBody();
+        this.sprite = tm.display.Sprite("player")
+            .addChildTo(this);
 
         //当り判定設定
         this.boundingType = "circle";
@@ -50,9 +51,6 @@ tm.define("jsstg.Player", {
         return this;
     },
     update: function() {
-    },
-    //機体設定
-    setupBody: function() {
     },
     //死亡演出
     damage: function() {
