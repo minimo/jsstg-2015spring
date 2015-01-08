@@ -48,6 +48,8 @@ tm.define("jsstg.Player", {
         this.radius = 2;
         this.checkHierarchy = true;
 
+        this.debug = tm.display.Label("").addChildTo(this).setPosition(0,-100);
+
         this.time = 0;
         return this;
     },
@@ -62,14 +64,17 @@ tm.define("jsstg.Player", {
         var ax = this.x - x;
         var ay = this.y - y;
         var rad = Math.atan2(ay, ax);
-        var deg = ~~(rad * toDeg);
-        return deg - 90;
+        var deg = ~~(rad * toDeg)-90;
+        if (deg < 0) deg += 360;    //正の値になるように
+        return deg;
     },
     //指定座標を向く
     look: function(x, y) {
-        var r = this.lookDirection(x, y);
-        r -= this.rotation;
+        var r = this.lookDirection(x, y)-this.rotation;
+        if (r > 180) r-=360;
         this.rotation += r/10;
+        if (this.rotation < 0) this.rotation+=360;
+        this.debug.text = ""+~~(this.rotation);
     },
     //死亡演出
     damage: function() {
@@ -82,6 +87,5 @@ tm.define("jsstg.Player", {
     startup: function() {
     },
 });
-
 
 })();
