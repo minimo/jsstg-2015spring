@@ -1,6 +1,6 @@
 /*
  *  Enemy.js
- *  2014/08/10
+ *  2015/01/09
  *  @auther minimo  
  *  This Program is MIT license.
  */
@@ -86,11 +86,13 @@ tm.define("tds.Enemy", {
 
     setup: function(name) {
         var param = {
+            width: 32,
+            height: 32,
             strokeStyle:"hsla(0, 100%, 100%, 1.0)",
             fillStyle:  "hsla(0, 100%, 100%, 1.0)",
             lineWidth: 2,
         };
-        var sh = tm.display.Shape(32, 32).addChildTo(this).renderRectangle(param);
+        var sh = tm.display.Shape(param).addChildTo(this);
     },
 
     update: function() {
@@ -129,13 +131,7 @@ tm.define("tds.Enemy", {
         this.def -= power;
         if (this.def < 1) {
             //破壊パターン投入
-            if (this.data.type == ENEMY_BOSS) {
-                this.deadBoss();
-                //ボスの場合はステージクリアを親シーンに通知
-                this.parentScene.stageClear = true;
-            } else {
-                this.dead();
-            }
+            this.dead();
             this.parentScene.enemyKill++;
 
             //弾消し
@@ -154,8 +150,8 @@ tm.define("tds.Enemy", {
             app.score += this.data.point*pow;
 
             //得点表示
-            var sc = tm.display.OutlineLabel(this.data.point+"x"+pow, 30).addChildTo(this.parentScene).setPosition(this.x, this.y);
-            sc.fontFamily = "'UbuntuMono'"; sc.align = "center"; sc.baseline  = "middle"; sc.fontWeight = 300; sc.outlineWidth = 2;
+            var sc = tm.display.OutlineLabel(this.data.point, 30).addChildTo(this.parentScene).setPosition(this.x, this.y);
+            sc.fontFamily = "scoreboard"; sc.align = "center"; sc.baseline  = "middle"; sc.fontWeight = 300; sc.outlineWidth = 2;
             sc.tweener.to({x: this.x, y: this.y-50, alpha:0}, 1000).call(function(){this.remove()}.bind(sc));
         }
     },
@@ -174,33 +170,10 @@ tm.define("tds.Enemy", {
 
         var area = this.width*this.height;
         if (area < 1025) {
-            tds.burnParticleSmall(this.x, this.y).addChildTo(this.parentScene);
             app.playSE("explodeSmall");
         } else {
-            tds.burnParticleLarge(this.x, this.y).addChildTo(this.parentScene);
             app.playSE("explodeLarge");
         }
-    },
-
-    deadBoss: function() {
-        this.isCollision = false;
-        this.isDead = true;
-        this.tweener.clear();
-        this.stopDanmaku();
-
-        this.on("enterframe", function() {
-            this.alpha *= 0.9;
-            if (this.alpha < 0.02) this.remove();
-        }.bind(this));
-
-        for (var i = 0; i < 10; i++) {
-            var x = rand(0, this.width)-this.width/2;
-            var y = rand(0, this.height)-this.height/2;
-            tds.burnParticleLarge(this.x+x, this.y+y).addChildTo(this.parentScene);
-        }
-        app.playSE("explodeLarge");
-
-        this.parentScene.eraseBullet();
     },
 
     //親機のセット

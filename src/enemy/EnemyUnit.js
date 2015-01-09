@@ -1,6 +1,6 @@
 /*
  *  EnemyData.js
- *  2014/08/02
+ *  2015/01/09
  *  @auther minimo  
  *  This Program is MIT license.
  */
