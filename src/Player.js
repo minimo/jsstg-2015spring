@@ -70,11 +70,14 @@ tm.define("jsstg.Player", {
     },
     //指定座標を向く
     look: function(x, y) {
-        var r = this.lookDirection(x, y)-this.rotation;
-        if (r > 180) r-=360;
-        this.rotation += r/10;
-        if (this.rotation < 0) this.rotation+=360;
-        this.debug.text = ""+~~(this.rotation);
+        var r = this.lookDirection(x, y);
+        var r2 = r-this.rotation;
+        if (r2 > 180) r2 -= 360;
+        if (r2 < -180) r2 += 360;
+        this.rotation += r2/10;
+        if (this.rotation < 0) this.rotation+=359;
+        if (this.rotation > 359) this.rotation-=360;
+        this.debug.text = ~~(this.rotation)+" : "+~~(r)+" : "+~~(r2);
     },
     //死亡演出
     damage: function() {
