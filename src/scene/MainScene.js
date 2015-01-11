@@ -34,7 +34,7 @@ tm.define("jsstg.MainScene", {
     score: 0,
 
     background: "rgba(0, 100, 0, 1.0)",
-    labelParam: {fontFamily: "scoreboard", align: "left", baseline: "top",outlineWidth: 3},
+    labelParam: {fontFamily: "misaki", align: "left", baseline: "top",outlineWidth: 3},
 
     init: function() {
         this.superInit();
@@ -64,7 +64,7 @@ tm.define("jsstg.MainScene", {
 
         //スコア表示ラベル
         var that = this;
-        var sc = this.scoreLabel = tm.display.OutlineLabel("SCORE: 0", 30)
+        var sc = this.scoreLabel = tm.display.OutlineLabel("SCORE: 0", 40)
             .addChildTo(this.systemBase)
             .setParam(this.labelParam);
         sc.update = function() {

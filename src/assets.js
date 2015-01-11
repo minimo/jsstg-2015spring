@@ -18,6 +18,7 @@ jsstg.assets = {
 
     //Font
     "scoreboard": "font/scoreboard.ttf",
+    "misaki":     "font/misaki_gothic.ttf",
 }
 
 })();

@@ -48,13 +48,11 @@ tm.define("jsstg.Player", {
         this.radius = 2;
         this.checkHierarchy = true;
 
-        this.debug = tm.display.Label("").addChildTo(this).setPosition(0,-100);
-
         this.time = 0;
         return this;
     },
     update: function() {
-        if (this.time % 10 == 0) {
+        if (this.time % 6 == 0) {
             this.enterShot();
         }
         this.time++;
@@ -74,10 +72,9 @@ tm.define("jsstg.Player", {
         var r2 = r-this.rotation;
         if (r2 > 180) r2 -= 360;
         if (r2 < -180) r2 += 360;
-        this.rotation += r2/10;
+        this.rotation += r2/6;
         if (this.rotation < 0) this.rotation+=359;
         if (this.rotation > 359) this.rotation-=360;
-        this.debug.text = ~~(this.rotation)+" : "+~~(r)+" : "+~~(r2);
     },
     //死亡演出
     damage: function() {
