@@ -5,10 +5,12 @@
  *  This Program is MIT license.
  */
 (function() {
-tds.enemyData = [];
+jsstg.enemyData = [];
 
-//攻撃ヘリタイプ（通常）
-tds.enemyData['cube1'] = {
+//雑魚
+tm.define("jsstg.enemyData.zako", {
+    superClass: "jsstg.Enemy",
+
     //使用弾幕パターン
     bulletPattern: "cube1",
 
@@ -47,6 +49,8 @@ tds.enemyData['cube1'] = {
         var deg = ~~(rad * toDeg);
         this.rotation = deg + 90;
     },
-};
+});
+jsstg.enemyData["zako"] = jsstg.enemyData.zako;
+
 
 })();

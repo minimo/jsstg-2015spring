@@ -6,8 +6,9 @@
  */
 (function() {
 
-tm.define("tds.Enemy", {
+tm.define("jsstg.Enemy", {
     superClass: "tm.display.CanvasElement",
+
     layer: LAYER_OBJECT,    //所属レイヤー
     parentScene: null,      //親シーン
     player: null,           //プレイヤー参照用
